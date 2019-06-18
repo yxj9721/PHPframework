@@ -14,7 +14,13 @@ define('MODULE', 'app');//定义默认模块
 //调试模式
 define('DEBUG', true);
 
+//想要引入composer自动加载的类,需要先include
+include "vendor/autoload.php";
+
 if (DEBUG) {
+    $whoops = new \Whoops\Run;
+    $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+    $whoops->register();
     ini_set('display_errors', 'on');
 } else {
     ini_set('display_errors', 'off');
